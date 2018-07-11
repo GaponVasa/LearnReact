@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Time</title>
+
+	<style>
+		.container>div{
+			margin-top: 20px;
+		}
+		.container>div>h1,
+		.container>div>h1{
+			font-size: 20px;
+			line-height: 20px;
+		}
+	</style>
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+	<header>
+		<div class="container">
+
+		</div>
+	</header>
+	<main>
+		<div class="container">
+
+		</div>
+	</main>
+	<footer>
+		<div class="container">
+			<div>
+				<h1></h1>
+				<h2></h2>
+			</div>
+
+		</div>
+	</footer>
+	<!-- <script type="text/babel">
+		function tick(){
+			const time = new Date();
+			const element = (
+				<div>
+					<h1>Hello World!</h1>
+					<h2>It is {time.toLocaleTimeString()}</h2>
+				</div>
+			);
+			ReactDOM.render(
+				element,
+				document.querySelector('main .container')
+			);
+		};
+		setInterval(tick, 1000);
+	</script> -->
+	<script type="text/javascript">
+		function tick(){
+			const time = new Date();
+			const h1 = React.createElement('h1', null, 'Hello World!');
+			const h2 = React.createElement('h2', null, `It is ${time.toLocaleTimeString()}`);
+			ReactDOM.render(
+				React.createElement('div', null, h1, h2),
+				document.querySelector('main .container')
+			);
+		};
+		setInterval(tick, 1000);
+	</script>
+
+</body>
+</html>

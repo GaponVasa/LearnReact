@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>React props</title>
+
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+	<main>
+		<div class="container">
+
+		</div>
+	</main>
+	<footer>
+		<div class="container">
+
+		</div>
+	</footer>
+	<script type="text/javascript">
+		const h1 = React.createElement('h1', null, "Hello World!");
+		ReactDOM.render(
+			h1,
+			document.querySelector('main .container')
+		);
+
+		class HelloWorld extends React.Component {
+			render(){
+				return React.createElement('h1', this.props, `Hello my ${this.props.petName}. My id ${this.props.id}. My title ${this.props.title}.`);
+			}
+		};
+
+		ReactDOM.render(
+			React.createElement('div', null,
+				React.createElement(HelloWorld, {
+					id: "dog",
+					petName: "Helga",
+					title: "Taksa"
+				}),
+				React.createElement(HelloWorld, {
+					id: "snail",
+					petName: "Herman",
+					title: "Ahatian"
+				}),
+				React.createElement(HelloWorld, {
+					id: "robot",
+					petName: "Mytia",
+					title: "hoover"
+				})
+			),
+			document.querySelector('footer .container')
+		);
+	</script>
+	<!-- <script src="js/.js" type="text/javascript"></script> -->
+</body>
+</html>
