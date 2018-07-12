@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>To Do List</title>
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+	<header>
+		<div class="container">
+
+		</div>
+	</header>
+	<main>
+		<div class="container">
+
+		</div>
+	</main>
+	<footer>
+		<div class="container">
+
+		</div>
+	</footer>
+
+	<script type="text/babel">
+		let listToDo = ['Hey it is me!', 'Hello World!'	];
+
+
+
+		class Task extends React.Component {
+			constructor(props) {
+				super(props);
+				this.state = {
+					edit: false,
+				};
+			};
+			edit = () => {
+				this.setState ({edit: true});
+			};
+			remove = () => {
+				alert ("Нажата кнопка удалить");
+			};
+			save = () => {
+				this.setState ({edit: false})
+			};
+			rendNorm = () => {
+				console.log('rendNorm')
+				return (
+					<div className="box">
+						<div className="text">{this.props.children}</div>
+						<button onClick={this.edit} className="btn light">Редактировать</button>
+						<button onClick={this.remove} className="btn red">Удалить</button>
+					</div>
+				);
+			};
+			rendEdit = () => {
+				console.log('rendEdit')
+				return (
+					<div className="box">
+						<textarea defaultValue={this.props.children}></textarea>
+						<button onClick={this.save} className="btn success">Сохранить</button>
+					</div>
+				);
+			};
+			render() {
+				console.log(this)
+				console.log(this.state)
+				if (this.state.edit) {
+					return this.rendEdit ();
+				} else {
+					return this.rendNorm ();
+				}
+			}
+		};
+
+		class AddToDoList extends React.Component {
+			constructor(props) {
+				super(props);
+			};
+
+			list = ()=>{
+				const list = this.props.list;
+				let i = list.map((el, ind)=>{
+					console.log('el', el);
+					console.log('ind', ind);
+					this.createList(el, ind);
+				});
+				console.log('i', i);
+			}
+
+			createList = (el, ind)=>{
+				console.log('createList');
+				return<Task children={el}/>
+			};
+
+			render(){
+				return(
+					<div>
+						{this.list()}
+					</div>
+				)
+			}
+		};
+
+
+		const place = document.querySelector("main .container")
+
+		ReactDOM.render(
+						// <div>
+						// 	<Task>Hey it is me!</Task>
+						// 	<Task>Hello World!</Task>
+						//
+						// </div>,
+						<AddToDoList list={listToDo} />,
+						place
+		);
+	</script>
+
+</body>
+</html>
