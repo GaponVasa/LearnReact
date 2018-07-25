@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Random_Table</title>
+	<link rel="stylesheet" href="css/all.css">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+	<main></main>
+    <script type="text/babel">
+
+		class CreateTable extends React.Component{
+
+			random = (arr, s)=>{
+                let rnd = Math.floor(Math.random() * (s - 1 + 1)) + 1;
+                if(arr.length == 0){
+                    arr.push(rnd);
+                }else if(arr.indexOf(rnd) == -1){
+                    arr.push(rnd);
+                }else{
+                    while(arr.indexOf(rnd) != -1){
+                        rnd = Math.floor(Math.random() * (s - 1 + 1)) + 1;
+                    };
+                    arr.push(rnd);
+                };
+                return rnd;
+            };
+
+			createTable = () =>{
+				if(Array.isArray(this.props.tableSize)){
+					const N = this.props.tableSize[0];
+					const M = this.props.tableSize[1];
+					let tempArray = [];
+					let sum = N*M;
+					let rows = [];
+					for (var i = 0; i < N; i++){
+						let rowID = `row${i}`
+						let cell = []
+						for (var idx = 0; idx < M; idx++){
+							let cellID = `cell${i}-${idx}`
+							cell.push(<td key={cellID} id={cellID}>{this.random(tempArray, sum)}</td>)
+						};
+						rows.push(<tr key={i} id={rowID}>{cell}</tr>)
+					};
+					return rows;
+				}else{
+					return null;
+				};
+			};
+
+            render(){
+                return(
+            		<table id="table">
+						<tbody>
+							{this.createTable()}
+						</tbody>
+					</table>
+                );
+            };
+        };
+
+        class Main extends React.Component{
+			constructor(props){
+				super(props);
+				this.state = {
+					valueN: '',
+					valueM: '',
+					clickSwitch: false
+				};
+			};
+
+			setValue = (event) =>{
+				const target = event.target
+				if(target.id === 'numberN'){
+					this.setState({valueN:target.value});
+				}else if(target.id === 'numberM'){
+					this.setState({valueM:target.value});
+				};
+				this.downSwitch();
+			};
+
+			upSwitch = ()=>{this.setState({clickSwitch:true})};
+
+			downSwitch = ()=>{this.setState({clickSwitch:false})};
+
+			setSize = ()=>{
+				if(this.state.valueN !== '' && this.state.valueM !== '' && this.state.clickSwitch){
+					return[this.state.valueN, this.state.valueM]
+				}else{
+					return;
+				};
+			};
+
+            render(){
+                return(
+					<div>
+                        <div className="head">
+                			<div className="wrapper"><input id="numberN" type="text" placeholder="Enter number N line"
+								value={this.state.value} onBlur={this.setValue}/></div>
+                			<div className="wrapper"><input id="numberM" type="text" placeholder="Enter number M column"
+								value={this.state.value} onBlur={this.setValue}/></div>
+                			<div className="wrapper"><input id="button" type="button" value="Random Table"
+								onClick={this.upSwitch}/></div>
+                		</div>
+						<div className="container"><CreateTable tableSize = {this.setSize()} /></div>
+					</div>
+                );
+            };
+        };
+
+
+        ReactDOM.render(
+            <Main/>,
+            document.querySelector('main')
+        );
+    </script>
+</body>
+</html>
