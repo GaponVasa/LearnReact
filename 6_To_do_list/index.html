@@ -8,25 +8,16 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 </head>
 <body>
-	<header>
-		<div class="container">
-
-		</div>
-	</header>
 	<main>
 		<div class="container">
 
 		</div>
 	</main>
-	<footer>
-		<div class="container">
 
-		</div>
-	</footer>
 
 	<script type="text/babel">
 		let listToDo = ['Hey it is me!', 'Hello World!'	];
-
+		//let listToDo = [];
 
 
 		class Task extends React.Component {
@@ -36,37 +27,61 @@
 					edit: false,
 				};
 			};
+
 			edit = () => {
 				this.setState ({edit: true});
 			};
+
 			remove = () => {
-				alert ("Нажата кнопка удалить");
+				console.log(this);
+				this.props.link(this);
+				//alert ("Presed key Delete");
 			};
+
 			save = () => {
 				this.setState ({edit: false})
 			};
+
+			createKey = (val) =>{
+				let arrVal = val.split(' ');
+				let result = '';
+				console.log("createKey()  arrVal", arrVal)
+				if(arrVal.length < 2){
+					if(arrVal.lenght = 1){
+						arrVal.push('1');
+						result = arrVal.join('_');
+					}else{
+						result = '1_2';
+					};
+				}else{
+					result = (arrVal.splice(0, 2)).join('_');
+				};
+				console.log('createKey() result ', result)
+				return result
+			}
+
 			rendNorm = () => {
-				console.log('rendNorm')
+				console.log('class Task   rendNorm()')
 				return (
-					<div className="box">
+					<div className="box" key={this.createKey(this.props.children)}>
 						<div className="text">{this.props.children}</div>
-						<button onClick={this.edit} className="btn light">Редактировать</button>
-						<button onClick={this.remove} className="btn red">Удалить</button>
+						<button onClick={this.edit} className="btn light">Edit</button>
+						<button onClick={this.remove} className="btn red">Delete</button>
 					</div>
 				);
 			};
 			rendEdit = () => {
-				console.log('rendEdit')
+				console.log('class Task   rendEdit()')
 				return (
-					<div className="box">
+					<div className="box"  key={this.createKey(this.props.children)}>
 						<textarea defaultValue={this.props.children}></textarea>
-						<button onClick={this.save} className="btn success">Сохранить</button>
+						<button onClick={this.save} className="btn success">Save</button>
 					</div>
 				);
 			};
 			render() {
-				console.log(this)
-				console.log(this.state)
+				//console.log(this)
+				//console.log(this.state)
 				if (this.state.edit) {
 					return this.rendEdit ();
 				} else {
@@ -78,27 +93,73 @@
 		class AddToDoList extends React.Component {
 			constructor(props) {
 				super(props);
+				this.state ={
+					addText:'',
+					//list:[],
+					changeProps:false
+				}
 			};
+
+			addToList = (userInput)=>{
+				let list = this.props.list;
+				list.push(userInput);
+				this.setState({changeProps: true, addText:''})
+			}
+
+			changeText = (value)=>{
+				this.setState(
+					{addText: value}
+				)
+			}
 
 			list = ()=>{
 				const list = this.props.list;
+				//console.log('class AddToDoList   list()  list', list);
 				let i = list.map((el, ind)=>{
-					console.log('el', el);
-					console.log('ind', ind);
-					this.createList(el, ind);
+					//console.log('class AddToDoList   list()  el', el);
+					//console.log('class AddToDoList   list()  ind', ind);
+					return this.createList(el, ind);
 				});
-				console.log('i', i);
+				//console.log('class AddToDoList   list()  i', i);
+				console.log('class AddToDoList   list()');
+				if(this.state.changeProps === true){
+					this.setState({changeProps: false})
+				}
+
+				//console.log('class AddToDoList   list() this.state.list', this.state.list);
+				return i;
+			}
+
+			delLink = (that)=>{
+				console.log('class AddToDoList   delLink()')
+				console.log(that);
 			}
 
 			createList = (el, ind)=>{
-				console.log('createList');
-				return<Task children={el}/>
+				console.log('class AddToDoList   createList()');
+				return<Task children={el} link={this.delLink}/>
 			};
 
 			render(){
+				// if(this.props.list.length !== 0){
+				// 	console.log('!0');
+				// 	this.props.list.forEach(el =>{
+				// 		this.state.list.push(el)
+				// 	})
+				// };
+				console.log('class AddToDoList   render()  this.state.changeProps', this.state.changeProps)
 				return(
 					<div>
-						{this.list()}
+						<div>
+							{	this.list()	}
+						</div>
+						<div>
+							<input
+								onChange={(e)=>this.changeText(e.target.value)}
+								value={this.state.addText}
+							type="text"	/>
+							<button onClick={()=>this.addToList(this.state.addText)}>Add to List</button>
+						</div>
 					</div>
 				)
 			}
@@ -108,11 +169,6 @@
 		const place = document.querySelector("main .container")
 
 		ReactDOM.render(
-						// <div>
-						// 	<Task>Hey it is me!</Task>
-						// 	<Task>Hello World!</Task>
-						//
-						// </div>,
 						<AddToDoList list={listToDo} />,
 						place
 		);
