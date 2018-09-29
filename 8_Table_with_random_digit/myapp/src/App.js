@@ -42,16 +42,6 @@ class App extends Component {
       return(
         <div>
           <div className="head">
-            {/* <div className="wrapper">
-              <input 
-                id="numberN" 
-                type="text" 
-                placeholder="Enter number N line"
-                value={this.state.value}
-                onBlur={this.setValue}
-              />
-             
-            </div> */}
             <Input
               id={"numberN"}
               type={"text"}
@@ -63,7 +53,7 @@ class App extends Component {
             <Input
               id={"numberM"}
               type={"text"}
-              placeholder={"Enter number M line"}
+              placeholder={"Enter number M column"}
               value={this.state.value}
               onBlur={this.setValue}
               onClick={null}
@@ -76,23 +66,6 @@ class App extends Component {
               onBlur={null}
               onClick={this.upSwitch}
             />
-            {/* <div className="wrapper">
-              <input 
-                id="numberM" 
-                type="text" 
-                placeholder="Enter number M column"
-                value={this.state.value} 
-                onBlur={this.setValue}
-              />
-            </div> */}
-            {/* <div className="wrapper">
-              <input 
-                id="button" 
-                type="button" 
-                value="Random Table"
-                onClick={this.upSwitch}
-              />
-            </div> */}
           </div>
           <div className="container">
             <CreateTable tableSize = {this.setSize()} />
