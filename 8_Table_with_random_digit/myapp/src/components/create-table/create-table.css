@@ -1,0 +1,33 @@
+.main{
+    width: 100%;
+    margin: 0 auto;
+}
+.head{
+    margin: 30px auto;
+    border:2px solid black;
+    border-radius: 5px;
+}
+.wrapper{
+    width: 80%;
+    margin: 10px auto ;
+}
+.wrapper input[type = "text"]{
+
+}
+.wrapper input[type = "button"]{
+
+}
+#table{
+    width: 100%;
+    font-size: 20px;
+    line-height: 20px;
+    margin: 0 0 30px 0;
+}
+#table tr{
+
+}
+#table td{
+    padding: 5px;
+    border:1px solid black;
+    text-align: center;
+}
