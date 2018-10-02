@@ -10,4 +10,4 @@ export const Button = (props)=>{
             {text}
         </button>
     );
-}
+};

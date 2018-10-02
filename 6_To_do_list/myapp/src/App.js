@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import Task from './components/task.js';
 import {Button} from './components/button.js';
 import './App.css';
@@ -15,7 +14,7 @@ class App extends React.Component {
       list: listToDo,
       changeProps:false
     };
-    //this.setState({list:this.props.addToList});
+    this.addToList = this.addToList.bind(this);
   };
 
   remove = (ind) => {
@@ -28,18 +27,12 @@ class App extends React.Component {
     let {list} = this.state;
     list[ind] = saveText;
     this.setState({list:list});
-    //console.log(list);
   };
 
-  addToList = (userInput)=>{
+  addToList= ()=>{
     let {list} = this.state;
-    // console.log(list);
-    //console.log(typeof list);
-    // console.log(Array.isArray(list));
-    list.push(userInput);
-    //console.log(typeof list);
+    list.push(this.state.addText);
     this.setState({changeProps: true, addText:''});
-    //console.log(typeof list);
   }
 
   changeText = (value)=>{
@@ -48,33 +41,27 @@ class App extends React.Component {
 
   list = ()=>{
     const {list} = this.state;
-    //console.log('class AddToDoList   list()  list', list);
-    let i = list.map((el, ind)=>{
-      //console.log('class AddToDoList   list()  el', el);
-      //console.log('class AddToDoList   list()  ind', ind);
+    let listArray = list.map((el, ind)=>{
       return (
-                <Task 
-                  key={ind}
-                  keyInd={ind}
-                  children={el}
-                  save={this.save}
-                  remove={this.remove}
-                />
+              <Task 
+                key={ind}
+                keyInd={ind}
+                children={el}
+                save={this.save}
+                remove={this.remove}
+              />
       )
     });
-    //console.log('class AddToDoList   list()  i', i);
-    //console.log('class AddToDoList   list()');
+
     if(this.state.changeProps === true){
       this.setState({changeProps: false})
     }
 
-    //console.log('class AddToDoList   list() this.state.list', this.state.list);
-    return i;
-  }
+    return listArray;
+  };
 
   render(){
 
-    //console.log('class AddToDoList   render()  this.state.changeProps', this.state.changeProps)
     return(
       <div>
         <div>
@@ -92,7 +79,7 @@ class App extends React.Component {
           <div className="input-group-append">
             <Button 
               className={"btn btn-outline-secondary"} 
-              onClick={()=>this.addToList(this.state.addText)}
+              onClick={this.addToList}
               text={"Add to List"}
             />
           </div>

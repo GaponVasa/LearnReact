@@ -24,9 +24,6 @@ class Task extends React.Component {
         const {keyInd, save} = this.props;
         this.setState ({edit: false});
         save(keyInd, this.state.value);
-        //console.log('Task   save()');
-        //console.log('Task   save() this.state.value=', this.state.value);
-
       };
       
       changeValue = (textValue)=>{
@@ -34,7 +31,6 @@ class Task extends React.Component {
       }
 
 			rendNorm = () => {
-				//console.log('class Task   rendNorm()')
 				return (
 					<div className="border rounded p-3 my-3" >
 						<div className="border-bottom pb-2 mb-2">{this.props.children}</div>
@@ -53,8 +49,8 @@ class Task extends React.Component {
 					</div>
 				);
 			};
+
 			rendEdit = () => {
-				//console.log('class Task   rendEdit()')
 				return (
 					<div className="border rounded p-3 my-3" >
             <textarea 
@@ -70,13 +66,12 @@ class Task extends React.Component {
 					</div>
 				);
 			};
+			
 			render() {
-				//console.log(this)
-				//console.log(this.state)
 				if (this.state.edit) {
-					return this.rendEdit ();
+					return this.rendEdit();
 				} else {
-					return this.rendNorm ();
+					return this.rendNorm();
 				}
 			}
 		};
