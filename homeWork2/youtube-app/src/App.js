@@ -4,6 +4,7 @@ import './App.css';
 import YTSearch from 'youtube-api-search';
 import {AddVideoList} from './components/add-video-list.js';
 import {AddMainVideo} from './components/add-main-video.js';
+import {DebounceInput} from 'react-debounce-input';
 
 
 class App extends Component {
@@ -75,11 +76,13 @@ class App extends Component {
     return (
       <main className="container">
           <div className=" navbar input-group">
-              <input 
+              <DebounceInput 
                 type="text" 
                 className="form-control"
                 placeholder="Search" 
                 value={serchInput}
+                minLength={5}
+                debounceTimeout={400}
                 onChange={this.changeInpuText}
               />
               <div className="input-group-append">
