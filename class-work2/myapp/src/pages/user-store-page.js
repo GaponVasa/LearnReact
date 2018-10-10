@@ -1,29 +1,29 @@
 import React, {Component} from 'react';
 
-import {CardAddToUserStorePage} from '../components/card-add-to-user-store-page.js'
+import {CartAddToUserStorePage} from '../components/cart-add-to-user-store-page.js'
+import { Button } from '../components/shared/button.js';
 
 export class UserStorePage extends Component {
 
   render() {
     const{changeActivePageToHomePage}=this.props;
-    const{changeActivePageToShoppingCard}= this.props;
+    const{changeActivePageToShoppingCart}= this.props;
     const{allGoods, lookLoggedAs}=this.props;
-    const{addToCardNewGoods}=this.props;
+    const{addToCartNewGoods, existGoodInCart}=this.props;
     return (
         <div className="container">
           <h1>USER PAGE</h1>
           <div className="row">
-            <div className="col-8">
-              <div className="row">
-                {allGoods.map((el, ind)=>{
-                  return <CardAddToUserStorePage 
-                          link='#' 
-                          someText={el} 
-                          onClickFunction={addToCardNewGoods} 
-                          key={ind}
-                        />
-                })}
-              </div>
+            <div className="col-8 d-flex flex-wrap">
+              {allGoods.map((el, ind)=>{
+                return <CartAddToUserStorePage 
+                        link='#' 
+                        someText={el} 
+                        existGoodInCart={existGoodInCart}
+                        onClickFunction={addToCartNewGoods} 
+                        key={ind}
+                      />
+              })}
             </div>
             <div className="col-4">
               <div>
@@ -31,20 +31,18 @@ export class UserStorePage extends Component {
               </div>
               <div className="flex-column ">
                 <div className="my-3">
-                  <button
-                    className="btn btn-outline-danger"
-                    onClick={changeActivePageToHomePage}
-                  >
-                    User Logout
-                  </button>
+                  <Button
+                    cssClass={"btn btn-outline-danger"}
+                    onclick={changeActivePageToHomePage}
+                    textButton={"User Logout"}
+                  />
                 </div>
                 <div>
-                  <button
-                    className="btn btn-outline-success"
-                    onClick={changeActivePageToShoppingCard}
-                  >
-                    Orders
-                  </button>
+                  <Button
+                    cssClass={"btn btn-outline-success"}
+                    onclick={changeActivePageToShoppingCart}
+                    textButton={"Orders"}
+                  />
                 </div>
               </div>
             </div>

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 
 import {ListAddToAdminStorePage} from '../components/list-add-to-admin-store-page.js';
+import { Button } from '../components/shared/button.js';
+import { InputGroup } from '../components/input-group-with-button.js';
 
 export class AdminStorePage extends Component {
   constructor(props){
@@ -32,8 +34,8 @@ export class AdminStorePage extends Component {
 
   render() {
     const{changeActivePageToHomePage}= this.props;
-    const{changeActivePageToShoppingCard}= this.props;
-    const{allGoods, lookLoggedAs}=this.props;
+    const{changeActivePageToShoppingCart}= this.props;
+    const{allGoods, lookLoggedAs, editGoodsArr}=this.props;
     return (
         <div className="container flex-grow-1">
           <div className="row">
@@ -42,28 +44,25 @@ export class AdminStorePage extends Component {
                 <h1>ADMIN PAGE</h1>
                 <ul className="list-group mb-4">
                   {allGoods.map((el, ind)=>{
-                      return <ListAddToAdminStorePage link='#' someText={el} key={ind} />
+                      return (
+                        <ListAddToAdminStorePage 
+                          link='#' 
+                          someText={el}
+                          editGoodsArr={editGoodsArr}
+                          keyId={ind}
+                          key={ind} 
+                        />
+                      )
                   })}
                 </ul>
                 <p>Add new</p>
-                <div className="input-group mb-3">
-                  <div className="input-group-prepend">
-                      <span className="input-group-text">@</span>
-                  </div>
-                  <input 
-                      type="text" 
-                      className="form-control" 
-                      placeholder="enter new name"
-                      value={this.state.inpuText}
-                      onChange={this.changeInpuText}
-                  />
-                  <button 
-                      className="btn btn-primary"
-                      onClick = {this.addItem}
-                  >
-                      Add
-                  </button>
-                </div>
+                <InputGroup
+                  placeholder={"Enter new name"}
+                  value={this.state.inpuText}
+                  onchange={this.changeInpuText}
+                  onclick={this.addItem}
+                  textButton={"Add"}
+                />
               </div>
             </div>
             <div className="col-4">
@@ -72,20 +71,18 @@ export class AdminStorePage extends Component {
               </div>
               <div className="flex-column">
                 <div className="my-3">
-                  <button
-                      className="btn btn-outline-danger"
-                      onClick={changeActivePageToHomePage}
-                  >
-                      User Logout
-                  </button>
+                  <Button
+                    cssClass={"btn btn-outline-danger"}
+                    onclick={changeActivePageToHomePage}
+                    textButton={"User Logout"}
+                  />
                 </div>
                 <div>
-                  <button
-                      className="btn btn-outline-success"
-                      onClick={changeActivePageToShoppingCard}
-                  >
-                      Orders
-                  </button>
+                  <Button
+                    cssClass={"btn btn-outline-success"}
+                    onclick={changeActivePageToShoppingCart}
+                    textButton={"Orders"}
+                  />
                 </div>
               </div>
             </div>

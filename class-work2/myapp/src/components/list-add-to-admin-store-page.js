@@ -1,19 +1,90 @@
 import React from 'react';
+import { Button } from './shared/button';
+import { InputGroup } from './input-group-with-button';
 
 export class ListAddToAdminStorePage extends React.Component {
-
-    render() {
-        //console.log('ListAddToAdminStorePage')
-        const{someText}=this.props;
-        const{link}=this.props;
-        return(
-            <li className="list-group-item">
-                <img src="#" alt=""/>
-                <a href={link} className="admin-orders__link">
-                    {someText}
-                </a>
-                <h2 className="float-right btn-link">✎</h2>
-            </li>
-        )
+  constructor(props){
+    super(props)
+    this.state={
+      inputText: this.props.someText,
+      changeItem: false,
     }
+  }
+
+  changeInpuText = (event)=>{
+    this.setState({
+      inputText:event.target.value
+    })
+  }
+
+  changeItemTrue = ()=>{
+    this.setState({
+      changeItem: true
+    })
+  }
+
+  changeItemFalse = ()=>{
+    const {keyId, editGoodsArr} = this.props;
+    editGoodsArr(keyId, this.state.inputText);
+    this.setState({
+      changeItem: false
+    })
+  }
+
+  onlyShow = ()=>{
+    const{someText}=this.props;
+    const{link}=this.props;
+    return(
+      <li className="list-group-item mb-3">
+        <a href={link} className="admin-orders__link">
+          {someText}
+        </a>
+      </li>
+    )
+  }
+
+  showAndEdit = ()=>{
+    const{someText}=this.props;
+    const{link}=this.props;
+    return(
+      <li className="list-group-item mb-3">
+        <a href={link} className="admin-orders__link">
+          {someText}
+        </a>
+        <Button
+          cssClass={"btn btn-outline-primary float-right "}
+          onclick={this.changeItemTrue}
+          textButton={"Edit page ✎"}
+        />
+      </li>
+    )
+  }
+
+  onlyEdit = ()=>{
+    return(
+      <li className="list-group-item">
+        <InputGroup
+          placeholder={null}
+          value={this.state.inputText}
+          onchange={this.changeInpuText}
+          onclick={this.changeItemFalse}
+          textButton={"Change"}
+        />
+      </li>
+    )
+  }
+
+  render() {
+    const {changeItem} = this.state;
+    const {lookLoggedAs} = this.props;
+    if(lookLoggedAs === "User"){
+      return (this.onlyShow());
+    }else{
+      if(changeItem){
+        return (this.onlyEdit());
+      }else{
+        return (this.showAndEdit());
+      }
+    }
+  }
 }
