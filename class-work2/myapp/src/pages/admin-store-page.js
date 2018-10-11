@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {ListAddToAdminStorePage} from '../components/list-add-to-admin-store-page.js';
 import { Button } from '../components/shared/button.js';
-import { InputGroup } from '../components/input-group-with-button.js';
+import { InputGroup } from '../components/shared/input-group-with-button.js';
 
 export class AdminStorePage extends Component {
   constructor(props){
@@ -33,7 +33,7 @@ export class AdminStorePage extends Component {
   }
 
   render() {
-    const{changeActivePageToHomePage}= this.props;
+    const{changeActivePageToHomePage, deleteAllGoodsArr}= this.props;
     const{changeActivePageToShoppingCart}= this.props;
     const{allGoods, lookLoggedAs, editGoodsArr}=this.props;
     return (
@@ -48,6 +48,7 @@ export class AdminStorePage extends Component {
                         <ListAddToAdminStorePage 
                           link='#' 
                           someText={el}
+                          deleteAllGoodsArr={()=>deleteAllGoodsArr(ind)}
                           editGoodsArr={editGoodsArr}
                           keyId={ind}
                           key={ind} 

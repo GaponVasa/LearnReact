@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './shared/button';
-import { InputGroup } from './input-group-with-button';
+import { InputGroup } from './shared/input-group-with-button';
 
 export class ListAddToAdminStorePage extends React.Component {
   constructor(props){
@@ -32,27 +32,38 @@ export class ListAddToAdminStorePage extends React.Component {
   }
 
   onlyShow = ()=>{
-    const{someText}=this.props;
-    const{link}=this.props;
-    return(
-      <li className="list-group-item mb-3">
-        <a href={link} className="admin-orders__link">
-          {someText}
-        </a>
-      </li>
-    )
-  }
-
-  showAndEdit = ()=>{
-    const{someText}=this.props;
-    const{link}=this.props;
+    const{someText, link}=this.props;
+    const{deleteCartGoodsArr}=this.props;
     return(
       <li className="list-group-item mb-3">
         <a href={link} className="admin-orders__link">
           {someText}
         </a>
         <Button
-          cssClass={"btn btn-outline-primary float-right "}
+          cssClass={"btn btn-outline-danger float-right "}
+          onclick={deleteCartGoodsArr}
+          textButton={"Delete page"}
+        />
+      </li>
+    )
+  }
+
+  showAndEdit = ()=>{
+    const{someText, link}=this.props;
+    const{deleteAllGoodsArr}=this.props;
+    return(
+      <li className="list-group-item mb-3">
+        <a href={link} className="admin-orders__link">
+          {someText}
+        </a>
+        
+         <Button
+          cssClass={"btn btn-outline-danger float-right"}
+          onclick={deleteAllGoodsArr}
+          textButton={"Delete page"}
+        />
+        <Button
+          cssClass={"btn btn-outline-primary float-right mr-3"}
           onclick={this.changeItemTrue}
           textButton={"Edit page ✎"}
         />

@@ -6,8 +6,8 @@ import { Button } from '../components/shared/button.js';
 export class ShoppingCart extends Component {
     
   render() {
-    const{changeActivePageToHomePage, clearCartGoods}=this.props; 
-    const{cartGoods, lookLoggedAs, toPeviousPage}=this.props;
+    const{changeActivePageToHomePage, clearCartGoods, editCartGoodsArr}=this.props; 
+    const{cartGoods, lookLoggedAs, toPeviousPage, deleteCartGoodsArr}=this.props;
 
     return (
         <div className="container">
@@ -20,7 +20,10 @@ export class ShoppingCart extends Component {
                       <ListAddToAdminStorePage 
                         link='#'  
                         someText={el}
+                        deleteCartGoodsArr={()=>deleteCartGoodsArr(ind)}
+                        editGoodsArr={editCartGoodsArr}
                         lookLoggedAs={lookLoggedAs}
+                        keyId={ind}
                         key={ind}
                       />
                     )

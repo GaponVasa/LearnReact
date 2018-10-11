@@ -30,11 +30,35 @@ class App extends Component {
     }
   }
 
+  deleteAllGoodsArr = (deleteInd)=>{
+    let currentArr = this.state.allGoods;
+    currentArr.splice(deleteInd, 1);
+    this.setState({
+      allGoods:currentArr
+    })
+  }
+
+  deleteCartGoodsArr = (deleteInd)=>{
+    let cardGoodsArr = this.state.cartGoods;
+    cardGoodsArr.splice(deleteInd, 1);
+    this.setState({
+      cartGoods:cardGoodsArr
+    })
+  }
+
   editAllGoodsArr = (editInd, editText)=>{
     let currentArr = this.state.allGoods;
     currentArr[editInd] = editText;
     this.setState({
       allGoods:currentArr
+    })
+  }
+
+  editCartGoodsArr = (editInd, editText)=>{
+    let cardGoodsArr = this.state.cartGoods;
+    cardGoodsArr[editInd] = editText;
+    this.setState({
+      cartGoods:cardGoodsArr
     })
   }
 
@@ -112,6 +136,7 @@ class App extends Component {
     };
     if(activePage === 'admin-store-page'){
       return <AdminStorePage 
+        deleteAllGoodsArr={this.deleteAllGoodsArr}
         editGoodsArr={this.editAllGoodsArr}
         changeActivePageToHomePage={this.changeActivePageToHomePage}
         changeActivePageToShoppingCart={this.changeActivePageToShoppingCart}
@@ -133,6 +158,8 @@ class App extends Component {
     };
     if(activePage === 'shopping-cart'){
       return <ShoppingCart
+        deleteCartGoodsArr={this.deleteCartGoodsArr}
+        editCartGoodsArr={this.editCartGoodsArr}
         clearCartGoods={this.clearCartGoods}
         toPeviousPage={this.goToPeviousPage}
         lookLoggedAs={this.state.logged}
