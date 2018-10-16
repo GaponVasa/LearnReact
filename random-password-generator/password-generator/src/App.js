@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
 import DataEntry from './pages/data-entry.js'
-import {symbolArr} from './pages/data-entry-array.js';
-import {password_generator} from './generate.js';
+import {symbolArr} from './data/data-entry-array.js';
+import {password_generator} from './generator/generate.js';
 
 class App extends Component {
 
   generatePassword = (len)=>{
+    const password = password_generator(len);
     console.log(typeof password_generator);
-    console.log(password_generator(len));
+    console.log(password, 'length', password.length);
   }
 
   render() {
