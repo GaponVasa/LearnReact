@@ -1,6 +1,5 @@
 export const symbolArr = [
-  "Select all",
-  "Upper case {A-Z}", "Lower case {a-z}", 
+  "Uppercase characters {A-Z}", "Lowercase characters {a-z}", 
   "Numbers {0-9}", "Space { }",
   "Exclamation {!}", 'Double quote {"}', 
   "Number sign (hash) {#}", "Dollar sign {$}", 

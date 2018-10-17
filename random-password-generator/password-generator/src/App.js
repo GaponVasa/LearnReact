@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 
-import DataEntry from './pages/data-entry.js'
+import DataEntry from './pages/data-entry.js';
+import Result from './pages/result.js';
 import {symbolArr} from './data/data-entry-array.js';
 import {password_generator} from './generator/generate.js';
 
 class App extends Component {
+  state={password:""};
 
-  generatePassword = (len)=>{
-    const password = password_generator(len);
-    console.log(typeof password_generator);
-    console.log(password, 'length', password.length);
+  generatePassword = (len, arrCharacters)=>{
+    const password = password_generator(len, arrCharacters);
+    this.setState({
+      password:password
+    });
+  }
+
+  copyText = (link)=>{
+    link.select();
+    document.execCommand("copy");
   }
 
   render() {
@@ -19,6 +27,10 @@ class App extends Component {
           <DataEntry 
             symbolArr={symbolArr}
             generatePassword={this.generatePassword}
+          />
+          <Result 
+            onclick={this.copyText}
+            result={this.state.password}
           />
         </div>
       </div>

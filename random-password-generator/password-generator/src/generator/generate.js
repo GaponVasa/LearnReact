@@ -1,36 +1,52 @@
-export const password_generator = ( len, arrCharacters  ) => {
+export const password_generator = ( passwordLength, arrCharacters  ) => {
   
-  let length;// = (len&&len===" ")?(len):(8);
-  let string = "abcdefghijklmnopqrstuvwxyz"; //to upper 
-  let numeric = '0123456789';
-  let punctuation = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
+  let length, arrayIndexesForDelete;
   let password = "";
-  let character = "";
-  let entity1, entity2, entity3, hold;
-  console.log(len);
-  console.log(len === "");
-  console.log(typeof len);
-  if(len === "" || len !== undefined){
-    length = 8;
-  }else{
-    length = len;
+  let allSymbolsString = [];
+  const defaultPasswordLength = 8;
+  const upperCaseArray = [
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+    "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+    "U", "V", "W", "X", "Y", "Z"
+  ];
+  const lowerCaseArray = [
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+    "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+    "u", "v", "w", "x", "y", "z"
+  ];
+  const nuberArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  //Перевіряєм чи є в arrCharacters послідовності "a-z", "A-Z" та "0-9" 
+  const existLowerCase = arrCharacters.indexOf("a-z");
+  const existUpperCase = arrCharacters.indexOf("A-Z");
+  const existNumber = arrCharacters.indexOf("0-9");
+  //Ф-ція для довільної генерації цифри яка лежить в межах від 0 до inputData.length
+  const randomData = (inputData)=>{return Math.floor(inputData.length * Math.random())};
+  //Ф-ція для довільної генерації сисволу з данного масиву arr
+  const generatorSymbol = (arr)=>{
+    let currentString = randomData(arr);
+    let currentArr = arr[currentString];
+    let curentDigit = randomData(currentArr);
+    return currentArr[curentDigit];
   };
-  while( password.length < length - 1 ) {
-    entity1 = Math.ceil(string.length * Math.random()*Math.random());
-    entity2 = Math.ceil(numeric.length * Math.random()*Math.random());
-    entity3 = Math.ceil(punctuation.length * Math.random()*Math.random());
-    hold = string.charAt( entity1 );
-    //hold = (password.length%2==0)?(hold.toUpperCase()):(hold);
-    character += hold;
-    character += numeric.charAt( entity2 );
-    character += punctuation.charAt( entity3 );
-    password = character;
-  }
-  console.log(password);
+  //Видаляємо послідовності "a-z", "A-Z" та "0-9" з масиву arrCharacters
+  arrayIndexesForDelete = [existLowerCase, existUpperCase, existNumber].sort((a,b)=>b-a);
+  arrayIndexesForDelete.forEach(el=>{if(el !== -1)arrCharacters.splice(el, 1)});
+  //Збираємо массив allSymbolsString з підмассивами елементів які ввійшли до масиву arrCharacters
+  if(existUpperCase !== -1)allSymbolsString.push(upperCaseArray);
+  if(existLowerCase !== -1)allSymbolsString.push(lowerCaseArray);
+  if(existNumber !== -1)allSymbolsString.push(nuberArray);
+  allSymbolsString.push(arrCharacters);
+  //Довжина паролю за замовчуванням
+  if(passwordLength === "" || passwordLength === undefined){
+    length = defaultPasswordLength;
+  }else{
+    length = passwordLength;
+  };
+  //Генеруємо попередню послідовність символів паролю
+  while( password.length < length) {
+    password += generatorSymbol(allSymbolsString);
+  };
+  //Перемішуємо символи і отримуємо пароль
   password=password.split('').sort(function(){return 0.5-Math.random()}).join('');
-  console.log(password);
-  console.log(length);
-  password = password.substr(0, length); 
-  console.log(password);
   return password; 
 }

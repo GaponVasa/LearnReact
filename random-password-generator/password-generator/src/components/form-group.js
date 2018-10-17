@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const FormGroup = (props)=>{
-  let{cssClassDiv, cssClassLable} = props;
+  let{cssClassDiv, cssClassLable, onclick} = props;
   const{inputId, textLable} = props;
   cssClassDiv = cssClassDiv === undefined?"form-group list-group-item":cssClassDiv;
   cssClassLable = cssClassLable === undefined?"form-check-label":cssClassLable;
@@ -11,6 +11,7 @@ export const FormGroup = (props)=>{
         type="checkbox"
         id={inputId}
         defaultChecked="cheked"
+        onClick={onclick}
       />
       <label 
         className={cssClassLable} 

@@ -15,9 +15,11 @@ class Select extends React.Component{
   render(){
     const optionArr = this.createOptionArray();
     const {value, onchange} = this.props;
+    const styleSelect = {height: 'calc(3rem + 2px)'};
     return(
       <select 
-        className="custom-select col-12 p-0"
+        style={styleSelect}
+        className="custom-select col-12"
         value={value}
         onChange={onchange}
       >
