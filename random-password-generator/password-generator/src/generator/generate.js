@@ -35,7 +35,8 @@ export const password_generator = ( passwordLength, arrCharacters  ) => {
   if(existUpperCase !== -1)allSymbolsString.push(upperCaseArray);
   if(existLowerCase !== -1)allSymbolsString.push(lowerCaseArray);
   if(existNumber !== -1)allSymbolsString.push(nuberArray);
-  allSymbolsString.push(arrCharacters);
+  //Перевіряємо массив arrCharacters на пустоту, для того щоб не генерація паролю була вірною.
+  if(arrCharacters.length !== 0)allSymbolsString.push(arrCharacters);
   //Довжина паролю за замовчуванням
   if(passwordLength === "" || passwordLength === undefined){
     length = defaultPasswordLength;

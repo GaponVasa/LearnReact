@@ -23,7 +23,7 @@ class Select extends React.Component{
         value={value}
         onChange={onchange}
       >
-        <option defaultValue>Open this select menu</option>
+        <option defaultValue>Select the length of the password.</option>
         {optionArr.map((el, ind)=><option value={el} key={ind}>{el}</option>)}
       </select>
     )
