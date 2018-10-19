@@ -1,0 +1,15 @@
+button{
+	cursor: pointer;
+}
+/*---------------------------HEADER----------------------------------*/
+.login {
+	font-size: 2.6rem;
+}
+/*-----------------------------MAIN-------------------------------*/
+main .clear-padding-left{
+	padding-left: 0px;
+	padding-right: 30px;
+}
+main .form-check-label{
+    padding-left: 1.25rem;
+}

@@ -1,0 +1,17 @@
+button{
+	cursor: pointer;
+}
+.width{
+	width:100%;
+}
+.halfwidth{
+	width: 46%;
+}
+/*---------------------------HEADER----------------------------------*/
+.login {
+	font-size: 2.6rem;
+}
+/*-----------------------------MAIN-------------------------------*/
+main .row > .col-3 > p{
+    margin: 2vh 0;
+}
