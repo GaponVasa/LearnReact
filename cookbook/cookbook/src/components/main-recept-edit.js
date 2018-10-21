@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from './button';
 
 class MainReceptEdit extends Component {
 
@@ -10,14 +11,23 @@ class MainReceptEdit extends Component {
             <div className="col-12 border border-primary rounded">
               <div className="row p-3 m-3">
                 <div className="col-3 d-flex flex-column justify-content-center">
-                    <div className="d-flex justify-content-center">
-                      <img src={picLink} alt="Recept"/>
-                    </div>
-                    <div>
-                      <button className="btn btn-outline-secondary halfwidth m-1" type="button" name="btn-download">Download</button>
-                      <button className="btn btn-outline-secondary halfwidth m-1" type="button" name="btn-delete">Delete</button>
-                    </div>
-                    
+                  <div className="d-flex justify-content-center">
+                    <img src={picLink} alt="Recept"/>
+                  </div>
+                  <div>
+                    <Button
+                      cssClass={"btn btn-outline-secondary halfwidth m-1"}
+                      onclick={null}
+                      textButton={"Download"}
+                    />
+                    <Button
+                      cssClass={"btn btn-outline-secondary halfwidth m-1"}
+                      onclick={null}
+                      textButton={"Delete"}
+                    />
+                    {/* <button className="btn btn-outline-secondary halfwidth m-1" type="button" name="btn-download">Download</button>
+                    <button className="btn btn-outline-secondary halfwidth m-1" type="button" name="btn-delete">Delete</button> */}
+                  </div>
                 </div>
                 <div className="col-9 border border-primary rounded p-4">
                   <div className="text-center mb-3">
@@ -45,8 +55,18 @@ class MainReceptEdit extends Component {
                           </ul>
                         </div>
                         <div className="col-2 p-3">
-                          <button className="btn btn-outline-secondary width mb-2" type="button" name="btn-add">&gt;</button>
-                          <button className="btn btn-outline-secondary width mt-2" type="button" name="btn-remove">&lt;</button>
+                          <Button
+                            cssClass={"btn btn-outline-secondary width mb-2"}
+                            onclick={null}
+                            textButton={">"}
+                          />
+                          <Button
+                            cssClass={"btn btn-outline-secondary width mb-2"}
+                            onclick={null}
+                            textButton={"<"}
+                          />
+                          {/* <button className="btn btn-outline-secondary width mb-2" type="button" name="btn-add">&gt;</button>
+                          <button className="btn btn-outline-secondary width mt-2" type="button" name="btn-remove">&lt;</button> */}
                         </div>
                         <div className="col-5 p-3">
                           <ul className="list-group row">

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Recept from './recept.js'
 import muffin from '../img/muffin2.png';
+import { Button } from './button.js';
 
 const recepts = [
   {
@@ -70,11 +71,21 @@ class MainReceptList extends Component {
               <input type="text" className="form-control" placeholder="Fragment name or ingridient"/>
             </div>
             <div className="col-3 d-flex justify-content-start">
-              <button className="btn btn-outline-secondary" type="button" name="btn-find">Find</button>
+              <Button
+                cssClass={"btn btn-outline-secondary"}
+                onclick={null}
+                textButton={"Find"}
+              />
+              {/* <button className="btn btn-outline-secondary" type="button" name="btn-find">Find</button> */}
             </div>	
             <div className="col-2 d-flex justify-content-center"></div>
             <div className="col-3 d-flex justify-content-end">
-              <button className="btn btn-outline-secondary" type="button" name="btn-add-recept">Add recept</button>
+              <Button
+                cssClass={"btn btn-outline-secondary"}
+                onclick={null}
+                textButton={"Add recept"}
+              />
+              {/* <button className="btn btn-outline-secondary" type="button" name="btn-add-recept">Add recept</button> */}
             </div>
           </div>
           <div className="col-12 border border-primary">

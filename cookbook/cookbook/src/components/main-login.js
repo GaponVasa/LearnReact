@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from './button';
 
 class MainLogin extends Component {
 
@@ -32,10 +33,18 @@ class MainLogin extends Component {
                 </div>
                 <div className="col text-left mt-5">
                   <div className="row">
-                    <input type="button" name="btn-sign-in" id="btn" className="btn btn-outline-primary" value="Sign in"/>
-                    <label className="d-flex align-items-center form-check-label ml-3">
+                    <Button
+                      cssClass={"btn btn-outline-primary"}
+                      onclick={null}
+                      textButton={"Sign in"}
+                    />
+                    {/* <input type="button" name="btn-sign-in" id="btn" className="btn btn-outline-primary" value="Sign in"/> */}
+                    <div  className="form-group">
+                      <input type="checkbox" name="remember-me" value="remember-me" className="m-2"/>Remember me
+                    </div>
+                    {/* <label className="d-flex align-items-center form-check-label ml-3">
                       <input type="checkbox" name="remember-me" value="remember-me" className="form-check-input"/>Remember me
-                    </label>
+                    </label> */}
                   </div>
                 </div>
               </div>

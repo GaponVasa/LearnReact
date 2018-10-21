@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import {List} from './list';
+import { Button } from './button';
+import { UnorderedList } from './unordered-list';
 
 class Recept extends Component {
 
@@ -25,16 +27,31 @@ class Recept extends Component {
         </div>
         <div className="col-3 d-flex flex-column justify-content-center">
           <p className="row mediumtext">{name}</p>
-          <ul className="list-group row">
+          <UnorderedList
+            arr={ingridients}
+            cssClassList={"list-group-item"}
+            cssClassUl={"list-group row"}
+          />
+          {/* <ul className="list-group row">
             {this.createListIngridients(ingridients)}
-          </ul>
+          </ul> */}
         </div>
         <div className="col-3 d-flex justify-content-center align-items-end">
           <p className="mediumtext">All ingredients:<span className="pl-3">{ingridients.length}</span></p>
         </div>
         <div className="col-3 d-flex flex-column justify-content-between flex-wrap">
-          <button className="btn btn-outline-secondary width" type="button" name="btn-edit">Edit</button>
-          <button className="btn btn-outline-secondary width" type="button" name="btn-delete">Delete</button>
+          <Button
+            cssClass={"btn btn-outline-secondary width"}
+            onclick={null}
+            textButton={"Edit"}
+          />
+          <Button
+            cssClass={"btn btn-outline-secondary width"}
+            onclick={null}
+            textButton={"Delete"}
+          />
+          {/* <button className="btn btn-outline-secondary width" type="button" name="btn-edit">Edit</button>
+          <button className="btn btn-outline-secondary width" type="button" name="btn-delete">Delete</button> */}
         </div>
       </div>
     )
