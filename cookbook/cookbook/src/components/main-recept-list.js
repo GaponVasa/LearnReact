@@ -34,7 +34,7 @@ const recepts = [
     picLink:muffin
   },
   {
-    name: 'fiftRecept',
+    name: 'fifthRecept',
     ingridients:[
       'firstIngridient', 'secondIngridient', 'thirdIngridient', 'fourthIngridient', 'fifthIngridient'
     ],

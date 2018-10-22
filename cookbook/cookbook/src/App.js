@@ -1,14 +1,35 @@
 import React, { Component } from 'react';
-
-import './App.css';
+import Login from './pages/login';
+import ReceptEdit from './pages/recept-edit';
+import ReceptList from './pages/recepts-list'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="container">
-        <button className="btn btn-success">start</button>
-      </div>
-    );
+  
+  render(){
+    return(
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Login</Link>
+            </li>
+            <li>
+              <Link to="/recept-edit">ReceptEdit</Link>
+            </li>
+            <li>
+              <Link to="/recept-list">ReceptList</Link>
+            </li>
+          </ul>
+
+          <hr />
+
+          <Route exact path="/" component={Login} />
+          <Route path="/recept-edit" component={ReceptEdit} />
+          <Route path="/recept-list" component={ReceptList} />
+        </div>
+      </Router>
+    )
   }
 }
 

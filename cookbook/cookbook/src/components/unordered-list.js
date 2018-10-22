@@ -4,11 +4,13 @@ export const UnorderedList = (props)=>{
   const {arrText, arrElement, cssClassList, cssClassUl} = props;
   const flagArrText = Array.isArray(arrText);
   const flagArrElement = Array.isArray(arrElement);
+  // console.log('flagArrText',flagArrText);
+  // console.log('flagArrElement',flagArrElement);
   if(flagArrText && flagArrElement){
     return(
       <ul className={cssClassUl}>
         {arrText.map((el, ind)=>{
-          return<li className={cssClassList}>{`${ind+1}.  ${el}`}{arrElement[ind]}</li>
+          return<li key={ind} className={cssClassList}>{`${ind+1}.  ${el}`}{arrElement[ind]}</li>
         })}
       </ul>
     ) 
@@ -16,7 +18,7 @@ export const UnorderedList = (props)=>{
     return(
       <ul className={cssClassUl}>
         {arrText.map((el, ind)=>{
-          return<li className={cssClassList}>{`${ind+1}.  ${el}`}</li>
+          return<li key={ind} className={cssClassList}>{`${ind+1}.  ${el}`}</li>
         })}
       </ul>
     ) 
@@ -24,10 +26,9 @@ export const UnorderedList = (props)=>{
     return(
       <ul className={cssClassUl}>
         {flagArrElement.map((el, ind)=>{
-          return<li className={cssClassList}>{el}</li>
+          return<li key={ind} className={cssClassList}>{el}</li>
         })}
       </ul>
     ) 
   }
-  
 }

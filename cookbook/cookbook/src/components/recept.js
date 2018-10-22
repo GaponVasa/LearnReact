@@ -6,20 +6,21 @@ import { UnorderedList } from './unordered-list';
 
 class Recept extends Component {
 
-  createListIngridients(arr){
-    return arr.map((el, ind)=>{
-      return (
-        <List 
-          key={ind}
-          id={ind+1}
-          ingridient={el}
-        />
-      )
-    })
-  }
+  // createListIngridients(arr){
+  //   return arr.map((el, ind)=>{
+  //     return (
+  //       <List 
+  //         key={ind}
+  //         id={ind+1}
+  //         ingridient={el}
+  //       />
+  //     )
+  //   })
+  // }
 
   render() {
     const{picLink, name, ingridients} = this.props;
+    //console.log(ingridients);
     return(
       <div className="row border border-primary rounded p-3 m-3">
         <div className="col-3">
@@ -28,7 +29,7 @@ class Recept extends Component {
         <div className="col-3 d-flex flex-column justify-content-center">
           <p className="row mediumtext">{name}</p>
           <UnorderedList
-            arr={ingridients}
+            arrText={ingridients}
             cssClassList={"list-group-item"}
             cssClassUl={"list-group row"}
           />
