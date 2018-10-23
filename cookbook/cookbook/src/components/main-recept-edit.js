@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from './button';
+import { UnorderedList } from './unordered-list';
 
 class MainReceptEdit extends Component {
 
@@ -19,14 +20,14 @@ class MainReceptEdit extends Component {
                       cssClass={"btn btn-outline-secondary halfwidth m-1"}
                       onclick={null}
                       textButton={"Download"}
+                      name="btn-download"
                     />
                     <Button
                       cssClass={"btn btn-outline-secondary halfwidth m-1"}
                       onclick={null}
                       textButton={"Delete"}
+                      name="btn-delete"
                     />
-                    {/* <button className="btn btn-outline-secondary halfwidth m-1" type="button" name="btn-download">Download</button>
-                    <button className="btn btn-outline-secondary halfwidth m-1" type="button" name="btn-delete">Delete</button> */}
                   </div>
                 </div>
                 <div className="col-9 border border-primary rounded p-4">
@@ -48,32 +49,33 @@ class MainReceptEdit extends Component {
                       </div>
                       <div className="col-9 row d-flex flex-row justify-content-center align-items-center pl-4">
                         <div className="col-5 p-3">
-                          <ul className="list-group row">
-                            <li className="list-group-item ">1. Ingridient</li>
-                            <li className="list-group-item ">2. Ingridient</li>
-                            <li className="list-group-item ">3. Ingridient</li>
-                          </ul>
+                          <UnorderedList
+                            arrText={["Ingridient", "Ingridient", "Ingridient"]}
+                            cssClassUl={"list-group row"}
+                            cssClassList={"list-group-item"}
+                          />
                         </div>
                         <div className="col-2 p-3">
                           <Button
                             cssClass={"btn btn-outline-secondary width mb-2"}
                             onclick={null}
                             textButton={">"}
+                            name="btn-add"
                           />
                           <Button
                             cssClass={"btn btn-outline-secondary width mb-2"}
                             onclick={null}
                             textButton={"<"}
+                            name="btn-remove"
                           />
-                          {/* <button className="btn btn-outline-secondary width mb-2" type="button" name="btn-add">&gt;</button>
-                          <button className="btn btn-outline-secondary width mt-2" type="button" name="btn-remove">&lt;</button> */}
                         </div>
                         <div className="col-5 p-3">
-                          <ul className="list-group row">
-                            <li className="list-group-item ">1. Ingridient <span className="ml-5">1</span></li>
-                            <li className="list-group-item ">2. Ingridient <span className="ml-5">5</span></li>
-                            <li className="list-group-item ">3. Ingridient <span className="ml-5">2</span></li>
-                          </ul>
+                          <UnorderedList
+                            arrText={["Ingridient", "Ingridient", "Ingridient"]}
+                            arrElement={["1", "5", "2"]}
+                            cssClassUl={"list-group row"}
+                            cssClassList={"list-group-item"}
+                          />
                         </div>
                       </div>
                     </div>
