@@ -1,57 +1,49 @@
 import React, { Component } from 'react';
+
 import { Button } from './button';
+import MainDiv from './main-div';
+import InputFieldForLogin from "./input-field-for-login";
+import CheckboxField from './checkbox-field';
 
 class MainLogin extends Component {
-
   render() {
 		const linkDummy = '#';
-		//const{logoLink, signUpOutText, signUpOut} = this.props;
     return (
-			<main className="container-fluid">
-				<div className="row d-flex justify-content-center m-3">
-					<div className="col-12 border border-primary rounded">
-            <form action={linkDummy} name="login" id="login" className="row p-3">
-              <div className="col-10 row form-group mt-3">
-                <div className="col">
-                  <p className="font-weight-bold float-right">Username.</p>
-                </div>
-                <div className="col clear-padding-left">
-                  <input type="text" name="username" className="form-control" maxLength="20" placeholder="Enter user name. Maximum 20 letters."/>
-                </div>
-              </div>
-              <div className="col-10 row form-group">
-                <div className="col">
-                  <p className="font-weight-bold float-right">Password.</p>
-                </div>
-                <div className="col clear-padding-left">
-                  <input type="password" name="password" className="form-control" placeholder="Password"/>
-                </div>
-              </div>
-              <div className="col-10 row form-group text-right">
-                <div className="col">
+      <MainDiv>
+        <div className="col-12 border border-primary rounded">
+          <form action={linkDummy} name="login" id="login" className="row p-3">
+            <InputFieldForLogin
+              textParagraph={"Username."}
+              placeholder={"Enter user name. Maximum 20 letters."}
+              typeInput={"text"}
+              nameInput={"username"}
+              maxLength={"20"}
+            />
+            <InputFieldForLogin
+              textParagraph={"Password. Maximum 20 letters."}
+              placeholder={"Password."}
+              typeInput={"password"}
+              nameInput={"password"}
+              maxLength={"20"}
+            />
+            <div className="col-10 row form-group text-right">
+              <div className="col">
 
-                </div>
-                <div className="col text-left mt-5">
-                  <div className="row">
-                    <Button
-                      cssClass={"btn btn-outline-primary"}
-                      onclick={null}
-                      textButton={"Sign in"}
-                    />
-                    {/* <input type="button" name="btn-sign-in" id="btn" className="btn btn-outline-primary" value="Sign in"/> */}
-                    <div  className="form-group">
-                      <input type="checkbox" name="remember-me" value="remember-me" className="m-2"/>Remember me
-                    </div>
-                    {/* <label className="d-flex align-items-center form-check-label ml-3">
-                      <input type="checkbox" name="remember-me" value="remember-me" className="form-check-input"/>Remember me
-                    </label> */}
-                  </div>
+              </div>
+              <div className="col text-left mt-5">
+                <div className="row">
+                  <Button
+                    cssClass={"btn btn-outline-primary"}
+                    onclick={null}
+                    textButton={"Sign in"}
+                  />
+                  <CheckboxField/>
                 </div>
               </div>
-            </form>
-					</div>
-				</div>
-			</main>
+            </div>
+          </form>
+        </div>
+      </MainDiv>
     );
   }
 }
